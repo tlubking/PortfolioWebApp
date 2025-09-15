@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <!-- About me -->
+    <div class="col-lg shadow border m-1">
+      <div class="text-center">
+        <h2>About Me</h2>
+        <img
+          src="assets/profile_photo.jpg"
+          class="avatar avatar--nudge"
+          alt="Trevor Lubking"
+          style="--avatar-pos: center 35%; --avatar-nudge: 0"
+        />
+        <h5 class="mt-2">Retired Professional Baseball Pitcher turned Software Engineer.</h5>
+        <p>
+          Passionate about building innovative web applications and leveraging technology to solve
+          real-world problems. I thrive in collaborative environments and am always eager to learn
+          new skills and technologies. Thank you for visiting my portfolio and taking the time to
+          learn more about me. I look forward to connecting with you!
+        </p>
+      </div>
+    </div>
+    <!-- Featured Project -->
+    <div class="col-lg shadow border m-1">
+      <div class="text-center">
+        <h2>Featured Project</h2>
+        <h4>{{ featuredProject.name }}</h4>
+      </div>
+
+      <ngb-carousel>
+        @for (picture of featuredProject.pictures; track picture) {
+        <ng-template ngbSlide>
+          <img src="{{ picture }}" alt="slide" style="display: block; width: 100%" />
+        </ng-template>
+        }
+      </ngb-carousel>
+      <p class="mt-2">{{ featuredProject.summary }}</p>
+      <p>Visit the Portfolio section to learn more!</p>
+    </div>
+  </div>
+</div>

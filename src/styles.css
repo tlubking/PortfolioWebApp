@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+/* Small tag/chip styles used across the site */
+.tag {
+  padding: 0 20px;
+  height: 30px;
+  width: fit-content;
+  font-size: 14px;
+  line-height: 30px;
+  border-radius: 25px;
+  background-color: #0d6efd; /* keep Bootstrap blue as default */
+  color: #fff;
+}
+
+/* Global color variables (warm-beige palette) */
+:root {
+  --page-bg-start: #fbf7f0; /* warm ivory */
+  --page-bg-mid: #f6efe6; /* pale beige */
+  --page-bg-end: #f3e9dc; /* soft sand */
+  --vignette-color: rgba(60, 38, 18, 0.035);
+}
+
+html,
+body,
+app-root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--page-bg-start);
+  background-image: linear-gradient(
+    180deg,
+    var(--page-bg-start) 0%,
+    var(--page-bg-mid) 55%,
+    var(--page-bg-end) 100%
+  );
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* site-bg covers the visible app area below the header/navbar and ensures the gradient shows through */
+.site-bg {
+  background: linear-gradient(
+    180deg,
+    var(--page-bg-start) 0%,
+    var(--page-bg-mid) 55%,
+    var(--page-bg-end) 100%
+  );
+  min-height: calc(100vh - 72px); /* leave space for header/navbar (adjust if different) */
+  width: 100%;
+  position: relative;
+}
+
+/* Optional container to add a subtle vignette for depth. Kept inside .site-bg so it sits under content. */
+.page-vignette::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, var(--vignette-color) 100%);
+  mix-blend-mode: multiply;
+}
