@@ -1,4 +1,4 @@
-import { Component, Renderer2, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -8,16 +8,16 @@ import { Title } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Resume {
-  constructor(private titleService: Title, private renderer: Renderer2) {
+  private readonly titleService = inject(Title);
+
+  private readonly resumePdfUrl =
+    'https://docs.google.com/document/d/1ooLPJci0KbhPYFtFti7Sj-4rRDHEyDP_2z8LMYHhwRA/export?format=pdf';
+
+  constructor() {
     this.titleService.setTitle('Trevor Lubking - Resume');
   }
 
   downloadResume(): void {
-    const link = this.renderer.createElement('a');
-    link.setAttribute('target', '_blank');
-    link.setAttribute('href', '/assets/Trevor_Lubking_Resume.pdf');
-    link.setAttribute('download', 'Trevor_Lubking_Resume.pdf');
-    link.click();
-    link.remove();
+    window.open(this.resumePdfUrl, '_blank', 'noopener,noreferrer');
   }
 }
